@@ -1,5 +1,7 @@
-package client;
+package clientServerHandler;
 
+import client.ClientInterface;
+import client.Hangman_Gui;
 import server.ClientToServer;
 import server.Handler;
 import server.ServerToClient;
@@ -14,7 +16,7 @@ import java.util.logging.Logger;
 /**
  * Created by joshuapro on 2015-11-19.
  */
-public class ClientHandler  implements Runnable,ClientInterface {
+public class ClientServerHandler  implements Runnable, ClientInterface {
 
 
     private ClientToServer clientInput= new ClientToServer(); // the action of the client
@@ -30,7 +32,7 @@ public class ClientHandler  implements Runnable,ClientInterface {
     private Socket clientSocket = null;
 
     //Constructor
-    ClientHandler(String host, int port, Hangman_Gui gui) {
+    public ClientServerHandler(String host, int port, Hangman_Gui gui) {
 
         this.gui = gui;
         this.port = port;

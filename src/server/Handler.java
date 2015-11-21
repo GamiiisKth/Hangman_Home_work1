@@ -117,7 +117,7 @@ public class Handler extends Thread implements Serializable {
                     System.out.println(e);
                 }
             }
-            //closes the streams if the server wants to stop running, if the running will be declarate to false
+            //closes the streams if the server wants to stop running, if the running will be declarate to false, getAction==3 from client
             System.out.println("Connection Closed");
             clientSocket.close();
 

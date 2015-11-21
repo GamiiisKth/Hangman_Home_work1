@@ -1,5 +1,6 @@
 package client;
 
+import clientServerHandler.ClientServerHandler;
 import server.ClientToServer;
 import server.ServerToClient;
 
@@ -20,9 +21,10 @@ public class Hangman_Gui extends JPanel implements ClientInterface
 {
     private ClientToServer clientInput= new ClientToServer();
     private ServerToClient serverAnswer = new ServerToClient();
-    ClientHandler clientHandler;
+    ClientServerHandler clientHandler;
     private JButton connectButton;
     private JButton submitButton;
+    private JButton disconnectButton;
     private JTextField wordField;
     private JTextField guessWord;
     private JTextField infoField;
@@ -98,7 +100,7 @@ public class Hangman_Gui extends JPanel implements ClientInterface
 
 
                 newGameButton.setEnabled(true);
-                clientHandler= new ClientHandler(host,port,Hangman_Gui.this);
+                clientHandler= new ClientServerHandler(host,port,Hangman_Gui.this);
                 new Thread(clientHandler).start();
 
             }
@@ -123,6 +125,23 @@ public class Hangman_Gui extends JPanel implements ClientInterface
 
             }
         });
+
+        disconnectButton= new JButton("Disconnect");
+        connectPanel.add(disconnectButton);
+        disconnectButton.setEnabled(false);
+        disconnectButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                clientInput.setAction(3);
+                clientHandler.stop();
+                clientHandler.setClientInput(clientInput);
+                connectButton.setEnabled(true);
+                disconnectButton.setEnabled(false);
+
+            }
+        });
+
         return connectPanel;
     }
 
@@ -215,13 +234,14 @@ public class Hangman_Gui extends JPanel implements ClientInterface
      * Callback method for the network layer. Should be invoked when
      * successfully connected to the server.
      */
-    void connected()
+ public    void connected()
     {
         SwingUtilities.invokeLater(new Runnable()
         {
             @Override
             public void run()
             {
+                disconnectButton.setEnabled(false);
                 newGameButton.setEnabled(true);
                 connectButton.setEnabled(false);
             }
@@ -231,8 +251,8 @@ public class Hangman_Gui extends JPanel implements ClientInterface
     //method that updates the GUI with the server's response
     @Override
     public void setEnvironment(final ServerToClient serverToClient) {
+
         if (uppdateTheGui) {
-            
             // kom ihåg att man behöver inte skapa en ny tråd för denna run metoden i clientHandler
             //denna run har egen tråd (swings egen tråd frt uppdatera gui) så denna tråd är alltid igång
             SwingUtilities.invokeLater(new Runnable() {
@@ -251,7 +271,7 @@ public class Hangman_Gui extends JPanel implements ClientInterface
                     attemptValueFiled.setText(String.valueOf((clientHandler.getServerToClient()).getFailAttempts()));
 
                     //clear the input text field each time the client sends sthg
-
+                    disconnectButton.setEnabled(true);
                     guessWord.setText("");
                     clientInput.setClientWord("");
                     clientInput.setAction(-1);

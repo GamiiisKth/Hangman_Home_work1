@@ -25,8 +25,5 @@ public class ClientToServer implements Task  {
         this.clientWord = clientWord;
     }
 
-    @Override
-    public void execute() {
 
-    }
 }

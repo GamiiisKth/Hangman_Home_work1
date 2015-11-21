@@ -67,9 +67,4 @@ public class ServerToClient implements Task {
         this.info = info;
     }
 
-
-    @Override
-    public void execute() {
-
-    }
 }
