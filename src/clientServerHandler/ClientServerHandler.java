@@ -71,8 +71,6 @@ public class ClientServerHandler  implements Runnable, ClientInterface {
             System.exit(1);
         }
     }
-
-
     //sends the client's guess to the server and returns the response from server
    // @Override
     public void sendClientAnswer() {
@@ -82,7 +80,7 @@ public class ClientServerHandler  implements Runnable, ClientInterface {
             try {
               Object o = objects.take();
                 out.writeObject(o);
-                // efter man har skickat objektet så spola outPutStrem från den så den nästa inte skickas igen
+   // efter man har skickat objektet så spola outPutStrem från den så den nästa gång man inte skickar föregående objectet igen
                 out.reset();
 
             } catch (InterruptedException e) {
