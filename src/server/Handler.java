@@ -33,8 +33,6 @@ public class Handler extends Thread implements Serializable {
         clientData.setScore(0);
         clientData.setInfo("");
 
-
-
     }// slut på konstruktör
 
     @Override
