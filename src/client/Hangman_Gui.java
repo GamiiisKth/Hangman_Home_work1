@@ -115,8 +115,7 @@ public class Hangman_Gui extends JPanel implements ClientInterface
              //   clientInput.setClientWord("");
                 clientInput.setAction(2);
 
-                //TODO GUI thread
-              // clientHandler.sendClientAnswer(clientInput);
+
                 clientHandler.setClientInput(clientInput);
 
 
