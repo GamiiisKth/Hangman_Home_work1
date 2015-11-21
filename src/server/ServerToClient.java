@@ -21,20 +21,6 @@ public class ServerToClient implements Task {
         this.word = word;
     }
 
-
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    protected String message;//replied message to the letter or word that client sends
-
-
-
     public int getFailAttempts() {
         return failAttempts;
     }

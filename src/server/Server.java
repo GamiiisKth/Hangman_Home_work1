@@ -11,7 +11,7 @@ import java.net.Socket;
 public class Server  {
     static final String USAGE = "java Server [hostname] [port] ";
     // on sonyVaio the words.txt path
-    static String filename = "C:\\Users\\ali\\IdeaProject\\Hangman_Home_work1\\src\\server\\words.txt";
+    static String filename = "C:\\Users\\ali\\IdeaProjects\\Hangman_Home_work1\\src\\server\\words.txt";
 
     /**
      * @param args the command line arguments

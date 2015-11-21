@@ -1,5 +1,7 @@
 package server;
 
+import clientServerHandler.ClientToServer;
+
 /**
  * Created by joshuapro on 2015-11-19.
  */
@@ -7,7 +9,7 @@ public class Hangme{
 
 public  Hangme(){}
 
-    public  void calculate(String chosenWord,ServerToClient serverAnswer,ClientToServer clientAnswer){
+    public  void calculate(String chosenWord, ServerToClient serverAnswer, ClientToServer clientAnswer){
 
         if(clientAnswer.getClientWord().isEmpty()){
             serverAnswer.setInfo("Guess a letter or Guess whole word");

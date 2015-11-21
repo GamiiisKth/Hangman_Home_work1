@@ -1,7 +1,7 @@
 package client;
 
 import clientServerHandler.ClientServerHandler;
-import server.ClientToServer;
+import clientServerHandler.ClientToServer;
 import server.ServerToClient;
 
 import javax.swing.*;
@@ -20,7 +20,6 @@ import java.awt.event.ActionListener;
 public class Hangman_Gui extends JPanel implements ClientInterface
 {
     private ClientToServer clientInput= new ClientToServer();
-    private ServerToClient serverAnswer = new ServerToClient();
     ClientServerHandler clientHandler;
     private JButton connectButton;
     private JButton submitButton;
@@ -32,8 +31,6 @@ public class Hangman_Gui extends JPanel implements ClientInterface
     private JTextField gameValueFiled;
     private JTextField attemptValueFiled;
     private JTextField scoreValueFiled;
-    // private JLabel resultLabel = new JLabel();
-    //  private ServerConnection connection;
     private boolean uppdateTheGui=false;
 
     /**
@@ -234,7 +231,7 @@ public class Hangman_Gui extends JPanel implements ClientInterface
      * Callback method for the network layer. Should be invoked when
      * successfully connected to the server.
      */
- public    void connected()
+ public void connected()
     {
         SwingUtilities.invokeLater(new Runnable()
         {

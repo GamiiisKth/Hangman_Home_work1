@@ -1,6 +1,5 @@
 package client;
 
-import server.ClientToServer;
 import server.ServerToClient;
 
 /**

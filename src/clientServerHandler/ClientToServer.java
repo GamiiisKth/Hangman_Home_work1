@@ -1,9 +1,11 @@
-package server;
+package clientServerHandler;
+
+import server.Task;
 
 /**
  * Created by joshuapro on 2015-11-19.
  */
-public class ClientToServer implements Task  {
+public class ClientToServer implements Task {
     private static final long serialVersionUID = -7386258182412348265L;
 
     private int action;

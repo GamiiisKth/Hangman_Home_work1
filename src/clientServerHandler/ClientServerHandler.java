@@ -2,7 +2,6 @@ package clientServerHandler;
 
 import client.ClientInterface;
 import client.Hangman_Gui;
-import server.ClientToServer;
 import server.Handler;
 import server.ServerToClient;
 
@@ -19,7 +18,6 @@ import java.util.logging.Logger;
 public class ClientServerHandler  implements Runnable, ClientInterface {
 
 
-    private ClientToServer clientInput= new ClientToServer(); // the action of the client
     private ServerToClient serverToClient= new ServerToClient();
     private final LinkedBlockingQueue<Object> objects = new LinkedBlockingQueue<>();
     private boolean running=true;
@@ -80,7 +78,7 @@ public class ClientServerHandler  implements Runnable, ClientInterface {
             try {
               Object o = objects.take();
                 out.writeObject(o);
-   // efter man har skickat objektet så spola outPutStrem från den så den nästa gång man inte skickar föregående objectet igen
+   // efter man har skickat objektet så spolas outPutStrem från så att nästa gång man inte skickar föregående objektet igen
                 out.reset();
 
             } catch (InterruptedException e) {
@@ -92,7 +90,6 @@ public class ClientServerHandler  implements Runnable, ClientInterface {
             Logger.getLogger(Handler.class.getName()).log(Level.SEVERE, null, e);
         }
         // recive
-        ServerToClient a = new ServerToClient();
         Object serverObject = null;
         try {
             serverObject = in.readObject();
@@ -105,14 +102,13 @@ public class ClientServerHandler  implements Runnable, ClientInterface {
 
         }
         if (serverObject instanceof ServerToClient) {
-            a = (ServerToClient) serverObject;
-            setServerToClient(a);
+
+            setServerToClient((ServerToClient) serverObject);
         } else {
             System.out.println(serverObject);
             System.out.println("Not instance");
             System.out.println("Returning nothing");
         }
-
     }
 
     @Override
@@ -129,10 +125,7 @@ public class ClientServerHandler  implements Runnable, ClientInterface {
         gui.setEnvironment(serverToClient);
     }
 
-
-
     public void setClientInput(ClientToServer clientInput) {
-        this.clientInput = clientInput;
         objects.add(clientInput);
     }
 

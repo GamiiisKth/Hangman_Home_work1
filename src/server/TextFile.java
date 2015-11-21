@@ -59,8 +59,6 @@ public class TextFile {
         for (int i=0; i < wordLenght; i++){
             dashTheWord[i]='-';
         }
-
-
         return new String(dashTheWord);
     }
 }

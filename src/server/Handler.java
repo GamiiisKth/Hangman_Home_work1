@@ -2,6 +2,8 @@ package server;
 
 
 
+import clientServerHandler.ClientToServer;
+
 import java.io.*;
 import java.net.Socket;
 import java.util.logging.Level;
