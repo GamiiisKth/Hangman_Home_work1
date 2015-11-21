@@ -27,7 +27,7 @@ public class Handler extends Thread implements Serializable {
         this.fileName=fileName;
         this.clientSocket=socket;
 
-        //initizera serverToClient start värde
+        //initizera serverToClient (gui) start värde
         clientData.setGames(0);
         clientData.setFailAttempts(0);
         clientData.setScore(0);
@@ -73,7 +73,7 @@ public class Handler extends Thread implements Serializable {
                     System.out.println(e.toString());
                     return;
                 }
-                Hangme hangme= new Hangme(); // skapa hangme klass sådan att den implementerar hangme case
+                Hangme hangme= new Hangme(); // skapa hangme objet sådan att den implementerar hangme cases
                 if(clientObject instanceof ClientToServer){
                     if (((ClientToServer) clientObject).getAction()==1 ){ // send action
                         // implement the server's respons based on the client's action on the game
@@ -88,7 +88,7 @@ public class Handler extends Thread implements Serializable {
                            clientData.setInfo("");
                       clientData.setGames((clientData.getGames()+1));
 
-                        //välj ett ny ord till klienten
+                        //välj ett ett ord till klienten
 
                         try {
                             chosenWord=textFile.chooseWord(fileName,textFile.countLines(fileName));
